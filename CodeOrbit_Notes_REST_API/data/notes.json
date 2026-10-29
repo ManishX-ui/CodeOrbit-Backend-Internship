@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "title": "My Updated Note",
+    "content": "I have successfully tested my Notes REST API using Postman.",
+    "createdAt": "2026-10-29T16:26:22.425Z",
+    "updatedAt": "2026-10-29T16:33:32.139Z"
+  }
+]

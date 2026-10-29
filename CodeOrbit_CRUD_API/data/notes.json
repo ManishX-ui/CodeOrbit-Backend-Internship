@@ -1,0 +1,8 @@
+[
+  {
+    "id": 1,
+    "title": "My First CRUD Record",
+    "content": "Testing the CRUD API for my CodeOrbit internship.",
+    "createdAt": "2026-10-29T16:59:51.707Z"
+  }
+]

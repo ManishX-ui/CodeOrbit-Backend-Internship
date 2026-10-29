@@ -1,0 +1,14 @@
+{
+  "name": "codeorbit-notes-rest-api",
+  "version": "1.0.0",
+  "description": "Beginner-friendly Notes REST API - CodeOrbit Task 1",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
