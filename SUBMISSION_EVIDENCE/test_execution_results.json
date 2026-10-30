@@ -1,0 +1,230 @@
+{
+  "task1": {
+    "root": {
+      "status": 200,
+      "body": {
+        "message": "CodeOrbit Notes REST API is running",
+        "endpoints": [
+          "GET /api/notes",
+          "POST /api/notes",
+          "GET /api/notes/:id",
+          "PUT /api/notes/:id",
+          "DELETE /api/notes/:id"
+        ]
+      }
+    },
+    "getAll": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": [
+          {
+            "id": 1,
+            "title": "My Updated Note",
+            "content": "I have successfully tested my Notes REST API using Postman.",
+            "createdAt": "2026-10-29T16:26:22.425Z",
+            "updatedAt": "2026-10-29T16:33:32.139Z"
+          }
+        ]
+      }
+    },
+    "create": {
+      "status": 201,
+      "body": {
+        "success": true,
+        "data": {
+          "id": 2,
+          "title": "Autonomous QA Note",
+          "content": "Testing via automated harness",
+          "createdAt": "2026-10-30T08:00:50.283Z"
+        }
+      }
+    },
+    "getById": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "id": 2,
+          "title": "Autonomous QA Note",
+          "content": "Testing via automated harness",
+          "createdAt": "2026-10-30T08:00:50.283Z"
+        }
+      }
+    },
+    "update": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "id": 2,
+          "title": "Updated Autonomous Note",
+          "content": "Updated content successfully",
+          "createdAt": "2026-10-30T08:00:50.283Z",
+          "updatedAt": "2026-10-30T08:00:50.289Z"
+        }
+      }
+    },
+    "delete": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Note deleted",
+        "data": {
+          "id": 2,
+          "title": "Updated Autonomous Note",
+          "content": "Updated content successfully",
+          "createdAt": "2026-10-30T08:00:50.283Z",
+          "updatedAt": "2026-10-30T08:00:50.289Z"
+        }
+      }
+    },
+    "validation": {
+      "status": 400,
+      "body": {
+        "success": false,
+        "message": "title must be a non-empty string and content must be a string"
+      }
+    }
+  },
+  "task2": {
+    "root": {
+      "status": 200,
+      "body": {
+        "message": "CodeOrbit User Auth API is running",
+        "endpoints": [
+          "POST /api/auth/signup",
+          "POST /api/auth/login"
+        ]
+      }
+    },
+    "signupValid": {
+      "status": 201,
+      "body": {
+        "success": true,
+        "message": "Account created successfully",
+        "user": {
+          "id": 3,
+          "name": "QA Tester",
+          "email": "qa.test.1793347250401@example.com",
+          "createdAt": "2026-10-30T08:00:50.476Z"
+        }
+      }
+    },
+    "loginValid": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Login successful",
+        "user": {
+          "id": 3,
+          "name": "QA Tester",
+          "email": "qa.test.1793347250401@example.com",
+          "createdAt": "2026-10-30T08:00:50.476Z"
+        }
+      }
+    },
+    "loginWrongPassword": {
+      "status": 401,
+      "body": {
+        "success": false,
+        "message": "Invalid email or password"
+      }
+    },
+    "duplicateSignup": {
+      "status": 409,
+      "body": {
+        "success": false,
+        "message": "An account with this email already exists"
+      }
+    },
+    "validation": {
+      "status": 400,
+      "body": {
+        "success": false,
+        "message": "Enter a valid email address"
+      }
+    }
+  },
+  "task3": {
+    "root": {
+      "status": 200,
+      "body": {
+        "message": "CodeOrbit modular CRUD API is running",
+        "notesEndpoint": "/api/notes"
+      }
+    },
+    "getAll": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": [
+          {
+            "id": 1,
+            "title": "My First CRUD Record",
+            "content": "Testing the CRUD API for my CodeOrbit internship.",
+            "createdAt": "2026-10-29T16:59:51.707Z"
+          }
+        ]
+      }
+    },
+    "create": {
+      "status": 201,
+      "body": {
+        "success": true,
+        "data": {
+          "id": 2,
+          "title": "Task 3 Structured Note",
+          "content": "Testing modular CRUD controller",
+          "createdAt": "2026-10-30T08:00:50.717Z"
+        }
+      }
+    },
+    "getById": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "id": 2,
+          "title": "Task 3 Structured Note",
+          "content": "Testing modular CRUD controller",
+          "createdAt": "2026-10-30T08:00:50.717Z"
+        }
+      }
+    },
+    "update": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "id": 2,
+          "title": "Updated Structured Note",
+          "content": "Updated modular content",
+          "createdAt": "2026-10-30T08:00:50.717Z",
+          "updatedAt": "2026-10-30T08:00:50.722Z"
+        }
+      }
+    },
+    "delete": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "message": "Note deleted",
+        "data": {
+          "id": 2,
+          "title": "Updated Structured Note",
+          "content": "Updated modular content",
+          "createdAt": "2026-10-30T08:00:50.717Z",
+          "updatedAt": "2026-10-30T08:00:50.722Z"
+        }
+      }
+    },
+    "validation": {
+      "status": 400,
+      "body": {
+        "success": false,
+        "message": "Note ID must be a positive integer"
+      }
+    }
+  }
+}

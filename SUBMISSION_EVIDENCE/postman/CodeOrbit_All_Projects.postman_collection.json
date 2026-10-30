@@ -1,0 +1,478 @@
+{
+  "info": {
+    "name": "CodeOrbit Backend Internship - Complete API Test Suite",
+    "_postman_id": "codeorbit-backend-internship-suite",
+    "description": "Unified Postman collection for all 3 CodeOrbit Backend Internship tasks.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Task 1: Notes REST API (Port 3001)",
+      "item": [
+        {
+          "name": "0. Root / Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Verify that the server is responding."
+          }
+        },
+        {
+          "name": "1. GET All Notes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes"
+              ]
+            },
+            "description": "Retrieve all notes from local JSON storage."
+          }
+        },
+        {
+          "name": "2. POST Create Note",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Internship Postman Note\",\n  \"content\": \"Testing Task 1 Notes REST API endpoints.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/notes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes"
+              ]
+            },
+            "description": "Create a new note. Stores in data/notes.json."
+          }
+        },
+        {
+          "name": "3. GET Note by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notes/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes",
+                "1"
+              ]
+            },
+            "description": "Retrieve a single note by its numeric ID."
+          }
+        },
+        {
+          "name": "4. PUT Update Note",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Postman Note\",\n  \"content\": \"Updated note body content.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/notes/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes",
+                "1"
+              ]
+            },
+            "description": "Update an existing note's title and/or content."
+          }
+        },
+        {
+          "name": "5. DELETE Note",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notes/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes",
+                "1"
+              ]
+            },
+            "description": "Delete an existing note by ID."
+          }
+        },
+        {
+          "name": "6. Validation - Empty Title (Expected 400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"\",\n  \"content\": \"Invalid note without title\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/notes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes"
+              ]
+            },
+            "description": "Test rejection of missing/empty title."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Task 2: User Authentication API (Port 3002)",
+      "item": [
+        {
+          "name": "0. Root / Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "1. POST Signup - Valid Account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"SecurePassword123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/signup",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "signup"
+              ]
+            },
+            "description": "Registers a user and hashes the password with bcrypt."
+          }
+        },
+        {
+          "name": "2. POST Login - Correct Credentials",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"SecurePassword123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Authenticates using bcrypt.compare."
+          }
+        },
+        {
+          "name": "3. POST Login - Incorrect Password (Expected 401)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"WrongPassword999!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Verifies rejection of invalid password with 401."
+          }
+        },
+        {
+          "name": "4. POST Duplicate Signup (Expected 409)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Duplicate User\",\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"AnotherPassword123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/signup",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "signup"
+              ]
+            },
+            "description": "Rejects account creation if email is already taken."
+          }
+        },
+        {
+          "name": "5. POST Signup - Missing or Invalid Fields (Expected 400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"A\",\n  \"email\": \"bad-email-format\",\n  \"password\": \"short\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/signup",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "signup"
+              ]
+            },
+            "description": "Validates minimum length for name, regex for email, and minimum length for password."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Task 3: Modular CRUD API (Port 3003)",
+      "item": [
+        {
+          "name": "0. Root / Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "1. GET All Records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes"
+              ]
+            },
+            "description": "Retrieves all records through the routes -> controller -> data layer."
+          }
+        },
+        {
+          "name": "2. POST Create Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Modular Architecture Record\",\n  \"content\": \"Testing layered MVC structure in Task 3.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/notes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes"
+              ]
+            }
+          }
+        },
+        {
+          "name": "3. GET Record by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notes/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "4. PUT Update Record",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Modular Architecture Record\",\n  \"content\": \"Successfully updated record via controller.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/notes/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "5. DELETE Record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notes/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "6. Validation - Non-numeric ID (Expected 400)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notes/invalid-id-format",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notes",
+                "invalid-id-format"
+              ]
+            },
+            "description": "Validates that IDs must be positive integers."
+          }
+        }
+      ]
+    }
+  ]
+}
