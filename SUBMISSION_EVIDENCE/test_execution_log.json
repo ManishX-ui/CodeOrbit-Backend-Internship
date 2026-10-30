@@ -1,0 +1,326 @@
+[
+  {
+    "task": 1,
+    "test": "Root Health Check",
+    "method": "GET",
+    "url": "http://localhost:3001/",
+    "status": 200,
+    "response": {
+      "message": "CodeOrbit Notes REST API is running",
+      "endpoints": [
+        "GET /api/notes",
+        "POST /api/notes",
+        "GET /api/notes/:id",
+        "PUT /api/notes/:id",
+        "DELETE /api/notes/:id"
+      ]
+    }
+  },
+  {
+    "task": 1,
+    "test": "GET All Notes",
+    "method": "GET",
+    "url": "http://localhost:3001/api/notes",
+    "status": 200,
+    "response": {
+      "success": true,
+      "data": [
+        {
+          "id": 1,
+          "title": "My Updated Note",
+          "content": "I have successfully tested my Notes REST API using Postman.",
+          "createdAt": "2026-10-29T16:26:22.425Z",
+          "updatedAt": "2026-10-29T16:33:32.139Z"
+        }
+      ]
+    }
+  },
+  {
+    "task": 1,
+    "test": "POST Create Note",
+    "method": "POST",
+    "url": "http://localhost:3001/api/notes",
+    "status": 201,
+    "response": {
+      "success": true,
+      "data": {
+        "id": 2,
+        "title": "Task 1 Test Note",
+        "content": "Building and testing beginner-friendly REST APIs with Node and Express",
+        "createdAt": "2026-10-30T07:14:03.781Z"
+      }
+    }
+  },
+  {
+    "task": 1,
+    "test": "GET Note by ID",
+    "method": "GET",
+    "url": "http://localhost:3001/api/notes/2",
+    "status": 200,
+    "response": {
+      "success": true,
+      "data": {
+        "id": 2,
+        "title": "Task 1 Test Note",
+        "content": "Building and testing beginner-friendly REST APIs with Node and Express",
+        "createdAt": "2026-10-30T07:14:03.781Z"
+      }
+    }
+  },
+  {
+    "task": 1,
+    "test": "PUT Update Note",
+    "method": "PUT",
+    "url": "http://localhost:3001/api/notes/2",
+    "status": 200,
+    "response": {
+      "success": true,
+      "data": {
+        "id": 2,
+        "title": "Updated Task 1 Note",
+        "content": "Updated note content verified successfully",
+        "createdAt": "2026-10-30T07:14:03.781Z",
+        "updatedAt": "2026-10-30T07:14:03.794Z"
+      }
+    }
+  },
+  {
+    "task": 1,
+    "test": "DELETE Note",
+    "method": "DELETE",
+    "url": "http://localhost:3001/api/notes/2",
+    "status": 200,
+    "response": {
+      "success": true,
+      "message": "Note deleted",
+      "data": {
+        "id": 2,
+        "title": "Updated Task 1 Note",
+        "content": "Updated note content verified successfully",
+        "createdAt": "2026-10-30T07:14:03.781Z",
+        "updatedAt": "2026-10-30T07:14:03.794Z"
+      }
+    }
+  },
+  {
+    "task": 1,
+    "test": "POST Validation - Empty Title",
+    "method": "POST",
+    "url": "http://localhost:3001/api/notes",
+    "status": 400,
+    "response": {
+      "success": false,
+      "message": "title must be a non-empty string and content must be a string"
+    }
+  },
+  {
+    "task": 1,
+    "test": "GET Note by ID - Not Found",
+    "method": "GET",
+    "url": "http://localhost:3001/api/notes/999999",
+    "status": 404,
+    "response": {
+      "success": false,
+      "message": "Note not found"
+    }
+  },
+  {
+    "task": 2,
+    "test": "Root Health Check",
+    "method": "GET",
+    "url": "http://localhost:3002/",
+    "status": 200,
+    "response": {
+      "message": "CodeOrbit User Auth API is running",
+      "endpoints": [
+        "POST /api/auth/signup",
+        "POST /api/auth/login"
+      ]
+    }
+  },
+  {
+    "task": 2,
+    "test": "Signup with valid test details",
+    "method": "POST",
+    "url": "http://localhost:3002/api/auth/signup",
+    "status": 201,
+    "response": {
+      "success": true,
+      "message": "Account created successfully",
+      "user": {
+        "id": 3,
+        "name": "QA Test Engineer",
+        "email": "intern.qa.1793344444369@codeorbit.test",
+        "createdAt": "2026-10-30T07:14:04.683Z"
+      }
+    }
+  },
+  {
+    "task": 2,
+    "test": "Login with correct credentials",
+    "method": "POST",
+    "url": "http://localhost:3002/api/auth/login",
+    "status": 200,
+    "response": {
+      "success": true,
+      "message": "Login successful",
+      "user": {
+        "id": 3,
+        "name": "QA Test Engineer",
+        "email": "intern.qa.1793344444369@codeorbit.test",
+        "createdAt": "2026-10-30T07:14:04.683Z"
+      }
+    }
+  },
+  {
+    "task": 2,
+    "test": "Login with incorrect password",
+    "method": "POST",
+    "url": "http://localhost:3002/api/auth/login",
+    "status": 401,
+    "response": {
+      "success": false,
+      "message": "Invalid email or password"
+    }
+  },
+  {
+    "task": 2,
+    "test": "Duplicate signup",
+    "method": "POST",
+    "url": "http://localhost:3002/api/auth/signup",
+    "status": 409,
+    "response": {
+      "success": false,
+      "message": "An account with this email already exists"
+    }
+  },
+  {
+    "task": 2,
+    "test": "Missing or invalid fields",
+    "method": "POST",
+    "url": "http://localhost:3002/api/auth/signup",
+    "status": 400,
+    "response": {
+      "success": false,
+      "message": "Name must contain at least 2 characters"
+    }
+  },
+  {
+    "task": 3,
+    "test": "Root Health Check",
+    "method": "GET",
+    "url": "http://localhost:3003/",
+    "status": 200,
+    "response": {
+      "message": "CodeOrbit modular CRUD API is running",
+      "notesEndpoint": "/api/notes"
+    }
+  },
+  {
+    "task": 3,
+    "test": "GET All Records",
+    "method": "GET",
+    "url": "http://localhost:3003/api/notes",
+    "status": 200,
+    "response": {
+      "success": true,
+      "data": [
+        {
+          "id": 1,
+          "title": "My First CRUD Record",
+          "content": "Testing the CRUD API for my CodeOrbit internship.",
+          "createdAt": "2026-10-29T16:59:51.707Z"
+        }
+      ]
+    }
+  },
+  {
+    "task": 3,
+    "test": "POST Create Record",
+    "method": "POST",
+    "url": "http://localhost:3003/api/notes",
+    "status": 201,
+    "response": {
+      "success": true,
+      "data": {
+        "id": 2,
+        "title": "Modular Architecture Note",
+        "content": "Separating concerns across routes, controllers, and data storage layers",
+        "createdAt": "2026-10-30T07:14:05.671Z"
+      }
+    }
+  },
+  {
+    "task": 3,
+    "test": "GET Record by ID",
+    "method": "GET",
+    "url": "http://localhost:3003/api/notes/2",
+    "status": 200,
+    "response": {
+      "success": true,
+      "data": {
+        "id": 2,
+        "title": "Modular Architecture Note",
+        "content": "Separating concerns across routes, controllers, and data storage layers",
+        "createdAt": "2026-10-30T07:14:05.671Z"
+      }
+    }
+  },
+  {
+    "task": 3,
+    "test": "PUT Update Record",
+    "method": "PUT",
+    "url": "http://localhost:3003/api/notes/2",
+    "status": 200,
+    "response": {
+      "success": true,
+      "data": {
+        "id": 2,
+        "title": "Updated Modular Architecture Note",
+        "content": "Updated content verified through controller logic",
+        "createdAt": "2026-10-30T07:14:05.671Z",
+        "updatedAt": "2026-10-30T07:14:05.680Z"
+      }
+    }
+  },
+  {
+    "task": 3,
+    "test": "DELETE Record",
+    "method": "DELETE",
+    "url": "http://localhost:3003/api/notes/2",
+    "status": 200,
+    "response": {
+      "success": true,
+      "message": "Note deleted",
+      "data": {
+        "id": 2,
+        "title": "Updated Modular Architecture Note",
+        "content": "Updated content verified through controller logic",
+        "createdAt": "2026-10-30T07:14:05.671Z",
+        "updatedAt": "2026-10-30T07:14:05.680Z"
+      }
+    }
+  },
+  {
+    "task": 3,
+    "test": "Invalid-input test - Missing Title",
+    "method": "POST",
+    "url": "http://localhost:3003/api/notes",
+    "status": 400,
+    "response": {
+      "success": false,
+      "message": "title is required and content must be a string"
+    }
+  },
+  {
+    "task": 3,
+    "test": "Invalid-input test - Non-integer ID",
+    "method": "GET",
+    "url": "http://localhost:3003/api/notes/invalid_id",
+    "status": 400,
+    "response": {
+      "success": false,
+      "message": "Note ID must be a positive integer"
+    }
+  }
+]

@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "a9182374-1234-4567-89ab-cdef01234567",
+		"name": "CodeOrbit Backend Internship API Collection",
+		"description": "Comprehensive Postman collection for all 3 CodeOrbit Backend Internship Tasks:\n1. Notes REST API (Port 3001)\n2. User Authentication API (Port 3002)\n3. Modular CRUD API (Port 3003)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Task 1 - Notes REST API (Port 3001)",
+			"item": [
+				{
+					"name": "0. Root Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3001",
+							"path": [""]
+						}
+					}
+				},
+				{
+					"name": "1. GET All Notes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/notes",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3001",
+							"path": ["api", "notes"]
+						}
+					}
+				},
+				{
+					"name": "2. POST Create Note",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Internship Task 1 Note\",\n  \"content\": \"Learning Node.js and Express REST APIs with CodeOrbit Tech\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/notes",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3001",
+							"path": ["api", "notes"]
+						}
+					}
+				},
+				{
+					"name": "3. GET Note by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/notes/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3001",
+							"path": ["api", "notes", "1"]
+						}
+					}
+				},
+				{
+					"name": "4. PUT Update Note",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated Task 1 Note\",\n  \"content\": \"Updated content after verifying PUT endpoint functionality\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/notes/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3001",
+							"path": ["api", "notes", "1"]
+						}
+					}
+				},
+				{
+					"name": "5. DELETE Note",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/notes/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3001",
+							"path": ["api", "notes", "1"]
+						}
+					}
+				},
+				{
+					"name": "6. Validation - Empty Title (400 Bad Request)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"\",\n  \"content\": \"Missing valid title string\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/notes",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3001",
+							"path": ["api", "notes"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Task 2 - User Authentication API (Port 3002)",
+			"item": [
+				{
+					"name": "0. Root Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3002",
+							"path": [""]
+						}
+					}
+				},
+				{
+					"name": "1. Signup Valid User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test Intern\",\n  \"email\": \"intern.test@example.com\",\n  \"password\": \"SecurePass123!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/auth/signup",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3002",
+							"path": ["api", "auth", "signup"]
+						}
+					}
+				},
+				{
+					"name": "2. Login Valid Credentials",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"intern.test@example.com\",\n  \"password\": \"SecurePass123!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/auth/login",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3002",
+							"path": ["api", "auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "3. Login Incorrect Password (401 Unauthorized)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"intern.test@example.com\",\n  \"password\": \"wrongPassword123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/auth/login",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3002",
+							"path": ["api", "auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "4. Duplicate Signup (409 Conflict)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Duplicate User\",\n  \"email\": \"intern.test@example.com\",\n  \"password\": \"AnotherPass123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/auth/signup",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3002",
+							"path": ["api", "auth", "signup"]
+						}
+					}
+				},
+				{
+					"name": "5. Validation - Missing or Invalid Fields (400 Bad Request)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"X\",\n  \"email\": \"invalid-email-format\",\n  \"password\": \"short\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/auth/signup",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3002",
+							"path": ["api", "auth", "signup"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Task 3 - Modular CRUD API (Port 3003)",
+			"item": [
+				{
+					"name": "0. Root Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3003",
+							"path": [""]
+						}
+					}
+				},
+				{
+					"name": "1. GET All Records",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/notes",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3003",
+							"path": ["api", "notes"]
+						}
+					}
+				},
+				{
+					"name": "2. POST Create Record",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Modular Architecture Note\",\n  \"content\": \"Clean separation of routes, controllers, and data access layers\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/notes",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3003",
+							"path": ["api", "notes"]
+						}
+					}
+				},
+				{
+					"name": "3. GET Record by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/notes/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3003",
+							"path": ["api", "notes", "1"]
+						}
+					}
+				},
+				{
+					"name": "4. PUT Update Record",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated Modular Architecture Note\",\n  \"content\": \"Updated and verified through the controller layer\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/notes/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3003",
+							"path": ["api", "notes", "1"]
+						}
+					}
+				},
+				{
+					"name": "5. DELETE Record",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/notes/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3003",
+							"path": ["api", "notes", "1"]
+						}
+					}
+				},
+				{
+					"name": "6. Validation - Invalid ID Format (400 Bad Request)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/api/notes/abc",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3003",
+							"path": ["api", "notes", "abc"]
+						}
+					}
+				}
+			]
+		}
+	]
+}
+
